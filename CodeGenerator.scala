@@ -15,7 +15,7 @@ case class MyList(name: String) extends Monad {
 	override def forComprehension = s"i$name <- $name"
 }
 
-class Monads(n: Int) {
+class Monads(funcname: String, n: Int) {
 	def randInt(max: Int): Int = {
 		return (math.random * max).toInt
 	}
@@ -35,6 +35,15 @@ val x = for {
 	1 + 1
 }
 	""".format(data.map(_.forComprehension).reduce(_ + "\n" + _))
+	def codeblock = s"""
+def $funcname(): Int = {
+	%s
+
+	%s
+
+	return 1
+}
+""".format(define, forComprehension)
 }
 
 object CodeGenerator {
@@ -42,17 +51,17 @@ object CodeGenerator {
 object TestCode {
 	def main(args: Array[String]) {
 		%s
-
-		%s
 	}
 }
 """
 
 	def main(args: Array[String]) {
-		val monads = new Monads(args(0).toInt)
+		val depth = args(0).toInt
+		val repeat = args(1).toInt
 		println(base.format(
-			monads.define,
-			monads.forComprehension
+			Range(0,repeat).toList.map{ rep =>
+				new Monads("f%d".format(rep), depth).codeblock
+			}.reduce(_ + "\n\n" + _)
 		))
 	}
 }
