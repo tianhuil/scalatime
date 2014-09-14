@@ -1,9 +1,9 @@
 all: analysis
 
-CodeGenerator.class: CodeGenerator.scala
-	scalac CodeGenerator.scala
+ForCompCodeGen.class: ForCompCodeGen.scala
+	scalac ForCompCodeGen.scala
 
-testsource/CodeGenerator.sentinel: CodeGenerator.class CodeGenerator.sh
+testsource/CodeGenerator.sentinel: ForCompCodeGen.class CodeGenerator.sh
 	. CodeGenerator.sh
 	touch testsource/CodeGenerator.sentinel
 
