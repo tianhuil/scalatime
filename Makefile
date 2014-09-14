@@ -1,10 +1,15 @@
-all: testcode/TestCode.class
+all: testclass/TestCode.class
 
 CodeGenerator.class: CodeGenerator.scala
-	scalac CodeGenerator.scala -d
+	scalac CodeGenerator.scala
 
-testcode/TestCode.scala: CodeGenerator.class
-	scala CodeGenerator.class > testcode/TestCode.scala
+testsource/CodeGenerator.sentinel: CodeGenerator.class
+	. ./CodeGenerator.sh
+	touch testsource/CodeGenerator.sentinel
 
-testcode/TestCode.class: testcode/TestCode.scala
-	scalac testcode/TestCode.scala -d testcode
+testclass/CodeCompiler.sentinel: testsource/CodeGenerator.sentinel
+	. ./CodeCompiler.sh
+	touch testclass/CodeCompiler.sentinel
+
+clean:
+	rm testsource/*

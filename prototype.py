@@ -1,10 +1,13 @@
 import subprocess
 import time
+import sys
 
-def duration(i):
+def duration(source):
   start = time.time()
-  subprocess.call(["scalac", "HelloWorld.scala"])
+  subprocess.call(["scalac", source, "-d", "testclass"])
   return time.time() - start
 
-durations = map(duration, xrange(5))
-print min(durations)
+for source in sys.argv[1:]:
+  durations = map(duration, [source] * 5)
+  print source
+  print min(durations)

@@ -49,7 +49,10 @@ object TestCode {
 """
 
 	def main(args: Array[String]) {
-		val monads = new Monads(23)
-		println(base.format(monads.define, monads.forComprehension))
+		val monads = new Monads(args(0).toInt)
+		println(base.format(
+			monads.define,
+			monads.forComprehension
+		))
 	}
 }
