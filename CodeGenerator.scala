@@ -48,7 +48,7 @@ def $funcname(): Int = {
 
 object CodeGenerator {
 	val base = """
-object TestCode {
+object %s {
 	def main(args: Array[String]) {
 		%s
 	}
@@ -56,9 +56,11 @@ object TestCode {
 """
 
 	def main(args: Array[String]) {
-		val depth = args(0).toInt
-		val repeat = args(1).toInt
+		val className = args(0)
+		val depth = args(1).toInt
+		val repeat = args(2).toInt
 		println(base.format(
+			className,
 			Range(0,repeat).toList.map{ rep =>
 				new Monads("f%d".format(rep), depth).codeblock
 			}.reduce(_ + "\n\n" + _)

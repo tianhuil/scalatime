@@ -8,6 +8,6 @@ def duration(source):
   return time.time() - start
 
 for source in sys.argv[1:]:
-  durations = map(duration, [source] * 5)
+  durations = map(duration, [source] * 3)
   print source
   print min(durations)
