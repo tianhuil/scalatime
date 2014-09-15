@@ -46,7 +46,7 @@ def $funcname(): Int = {
 """.format(define, forComprehension)
 }
 
-object CodeGenerator {
+object ForCompCodeGen {
 	val base = """
 object %s {
 	def main(args: Array[String]) {
