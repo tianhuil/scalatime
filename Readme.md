@@ -10,6 +10,7 @@ We are primarily interested in the relative cost of different features so the re
 Features tested
 ---------------
 So far, we have only tested two features:
+
 1. for comprehensions
 1. implicits
 
