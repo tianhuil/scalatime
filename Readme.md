@@ -46,7 +46,7 @@ To run the code, just type
 ```
 make
 ```
-Below is the output from from running the makefile (it is somewhat difficult to parse without looking at the source code).  It was run on a Macbook Pro with 16GB of Ram and a 2.3 Ghz i7 processor running OSX 10.9.4.
+Below is the output from running the makefile (it is somewhat difficult to parse without looking at the source code).  It was run on a Macbook Pro with 16GB of Ram and a 2.3 Ghz i7 processor running OSX 10.9.4.
 ```
 testsource/Implicit10.scala
 3.94771099091
