@@ -3,7 +3,10 @@ all: analysis
 ForCompCodeGen.class: ForCompCodeGen.scala
 	scalac ForCompCodeGen.scala
 
-testsource/CodeGenerator.sentinel: ForCompCodeGen.class CodeGenerator.sh
+ImplicitCodeGen.class: ImplicitCodeGen.scala
+	scalac ImplicitCodeGen.scala
+
+testsource/CodeGenerator.sentinel: ForCompCodeGen.class ImplicitCodeGen.class CodeGenerator.sh
 	. CodeGenerator.sh
 	touch testsource/CodeGenerator.sentinel
 
