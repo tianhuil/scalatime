@@ -1,6 +1,13 @@
+Data Science for Compiler Speeds
+--------------------------------
+
 This repository tests the compile time of various `scala` language features.  It does this by auto-generating code, compiling it, and measuring the shortest-of-three compiles.
 
-Features Tested
+The main idea behind this analysis is to generate code that uses a variable number of the same feature (e.g. 10, 20, 30 implicits) but is otherwise the same.  We then compare the compile times to establish the cost of an additional use of this language feature (e.g. the additional compile time for a single implicit).
+
+We are primarily interested in the relative cost of different features so the results should be independent of the exact machine on which the results are run.
+
+Features tested
 ---------------
 So far, we have only tested two features:
 1. for comprehensions
@@ -8,9 +15,9 @@ So far, we have only tested two features:
 
 Results
 -------
-Contrary to popular lore, implicits are not very slow!  A file with 60 implicants and functions that need 10 of them only takes 3.5 seconds to compile.  By increasing the number of implicits in the code, we can tell it's about **0.3ms per additional implicit per function call**.
+Contrary to popular lore, implicits are not very slow!  A file with 60 implicants and functions that need 10 of them only takes 3.5 seconds to compile.  By increasing the number of implicits in the code, we can tell it's about **0.3ms per additional implicit per function invocation**.
 
-On the other hand, for-comprehensions (over options and lists) are expensive.  When nested, they are about **17ms - 26ms per level** (i.e. per `flatmap` / `map` that they represent).  The lower estimate is for a for comprehension are just one after another:
+On the other hand, for-comprehensions (over options and lists) are expensive.  When nested, they are about **17ms - 26ms per level** (i.e. per `flatmap` / `map` that they represent).  The lower estimate is for a for comprehension is just appended to the first list:
 ```
 val x0 = for {
 	v0 <- list
@@ -18,11 +25,11 @@ val x0 = for {
 } yield ...
 
 val x1 = for {
-	v0 <- list
+	v1 <- list
 	...
 } yield ...
 ```
-The higher estimate is when they are nested, i.e.
+The higher estimate is when the additional element is nested, i.e.
 ```
 val x0 = for {
 	v0 <- list1
@@ -39,7 +46,7 @@ To run the code, just type
 ```
 make
 ```
-Below is the output from from running the makefile (it is somewhat difficult to parse without looking at the source code).
+Below is the output from from running the makefile (it is somewhat difficult to parse without looking at the source code).  It was run on a Macbook Pro with 16GB of Ram and a 2.3 Ghz i7 processor running OSX 10.9.4.
 ```
 testsource/Implicit10.scala
 3.94771099091
