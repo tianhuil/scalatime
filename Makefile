@@ -6,7 +6,10 @@ ForCompCodeGen.class: ForCompCodeGen.scala
 ImplicitCodeGen.class: ImplicitCodeGen.scala
 	scalac ImplicitCodeGen.scala
 
-testsource/CodeGenerator.sentinel: ForCompCodeGen.class ImplicitCodeGen.class CodeGenerator.sh
+CaseMatchCodeGenerator.class: CaseMatchCodeGenerator.scala
+	scalac CaseMatchCodeGenerator.scala
+
+testsource/CodeGenerator.sentinel: ForCompCodeGen.class ImplicitCodeGen.class CaseMatchCodeGenerator.class CodeGenerator.sh
 	. CodeGenerator.sh
 	touch testsource/CodeGenerator.sentinel
 

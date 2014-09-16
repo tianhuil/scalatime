@@ -49,6 +49,14 @@ make
 ```
 Below is the output from running the makefile (it is somewhat difficult to parse without looking at the source code).  It was run on a Macbook Pro with 16GB of Ram and a 2.3 Ghz i7 processor running OSX 10.9.4.
 ```
+testsource/CaseMatch2.scala
+3.26035404205
+testsource/CaseMatch4.scala
+4.6698949337
+testsource/CaseMatch6.scala
+9.4160130024
+testsource/CaseMatch8.scala
+20.3266780376
 testsource/Implicit10.scala
 3.94771099091
 testsource/Implicit20.scala
@@ -57,8 +65,6 @@ testsource/Implicit30.scala
 4.10808706284
 testsource/Implicit40.scala
 4.19162583351
-testsource/Implicit50.scala
-4.18769097328
 testsource/MultiForComp10.scala
 3.46595621109
 testsource/MultiForComp20.scala
